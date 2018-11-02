@@ -1,30 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../layout/header')%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+    <div class="container">
 
-<body>
-    <h1>Minhas Publicacoes</h1>
-    <a href="/publicacoes/create">Nova Publicação </a><br><br>
+        <legend class="text-center">
+            <i class="fas fa-list"></i> Lista de Publicações</legend>
+        <hr>
 
-    <% publicacoes.forEach(value => { %>
-        <fieldset>
-            <h4>
-                <%= value.titulo %>
-            </h4>
-            <p>
-                <%= value.conteudo %>
-            </p>
-            <a href="/publicacoes/edit/<%= value.id %>">Editar</a>
-            <a href="/publicacoes/destroy/<%= value.id%>">Excluir</a>
-        </fieldset>
-        <% })%>
+        <a class="btn btn-success btn-sm" href="/publicacoes/create">
+            <i class="fas fa-plus"></i> Nova publicação</a>
+        <br>
+        <br>
 
-</body>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Título</th>
+                    <th scope="col">Conteúdo</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% publicacoes.forEach(value => { %>
+                    <tr>
+                        <th scope="row">
+                            <%= value.titulo %>
+                        </th>
+                        <th scope="row">
+                            <%= value.conteudo %>
+                        </th>
+                        <td>
+                            <a class="btn btn-secondary btn-sm" href="/publicacoes/destroy/<%= value.id%>">
+                                <i class="fas fa-trash"></i>
+                                Exluir
+                            </a>
+                            <a class="btn btn-secondary btn-sm" href="/publicacoes/edit/<%= value.id %>">
+                                <i class="fas fa-pencil-alt"></i>
+                                Editar
+                            </a>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
 
-</html>
+    <br>
+    <%- include('../layout/footer')%>

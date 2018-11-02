@@ -1,22 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../layout/header')%>
+    <div class="container">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+        <legend class="text-center">
+            <i class="fas fa-list"></i> Lista de Categoria</legend>
+        <hr>
 
-<body>
-    <a href="/categorias/nova">Nova</a>
+        <a class="btn btn-success btn-sm" href="/categorias/nova">
+            <i class="fas fa-plus"></i> Nova categoria</a>
+        <a class="btn btn-primary btn-sm" href="/publicacoes/create">
+            <i class="fas fa-plus"></i> Nova publicação</a>
+        <br>
+        <br>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% categorias.forEach(value => { %>
+                    <tr>
+                        <th scope="row">
+                           <a href="/categorias/<%= value.id %>/publicacoes"> <%= value.categoria %></a>
+                        </th>
+                        <td>
+                            <a class="btn btn-secondary btn-sm" href="/categorias/exluir/<%= value.id%>" </a>
+                                <i class="fas fa-trash"></i> Exluir</a>
+                            <a class="btn btn-secondary btn-sm" href="/categorias/editar/<%= value.id%>" </a>
+                                <i class="fas fa-pencil-alt"></i> Editar</a>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+
     <br>
-    <% categorias.forEach(value => { %>
-        <%= value.categoria %>
-            <a href="/categorias/exluir/<%= value.id%>" </a>Exluir</a>
-            <a href="/categorias/editar/<%= value.id%>" </a>Editar</a>
-            <br>
-            <% }) %>
-</body>
 
-</html>
+    <%- include('../layout/footer')%>

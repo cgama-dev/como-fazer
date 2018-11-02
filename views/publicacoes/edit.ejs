@@ -1,23 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-
-<body>
-    <h1>Página de edição de categorias</h1>
-
-    <hr>
-    <form method="POST" action="/publicacoes/edit/<%= id %>">
-        <input name="titulo" type="text" value="<%= titulo %>" />
-        <input name="conteudo" type="text" value="<%= conteudo %>" />
-        <button type="submit"> Atualizar</button>
-    </form>
-
-</body>
-
-</html>
+<%- include('../layout/header')%>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="well well-sm">
+                    <legend class="text-center">Atualizar Publicação</legend>
+                    <hr>
+                    <form method="POST" action="/publicacoes/edit/<%= id %>">
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="name">Título </label>
+                                <div class="col-md-6">
+                                    <input name="titulo" type="text" value="<%= titulo %>" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="name">Conteúdo: </label>
+                                <div class="col-md-6">
+                                    <textarea placeholder="Informe o conteúdo" name="conteudo" class="form-control"><%= conteudo %></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 ">
+                                    <button type="submit" class="btn btn-primary ">Atualizar</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../layout/footer')%>

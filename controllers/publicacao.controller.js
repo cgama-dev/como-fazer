@@ -24,15 +24,21 @@ module.exports = () => {
                 }
             )
         },
-        pageSave: (req, res) => {
-            res.render('publicacoes/create')
+        pageSave: async (req, res) => {
+
+            const categorias = await api.findAll('categorias')
+
+            res.render('publicacoes/create', { categorias: categorias })
+
         },
         save: async (req, res) => {
             const publicacao = {
                 titulo: req.body.titulo,
-                conteudo: req.body.conteudo
+                conteudo: req.body.conteudo,
+                categoria_id: req.body.idCategoria
             }
-            api.create('publicacoes', publicacao)
+
+            await api.create('publicacoes', publicacao)
 
             res.redirect('/publicacoes')
         },

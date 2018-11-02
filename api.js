@@ -34,11 +34,41 @@ const del = async (key, id) => {
     return true
 }
 
+const delCascade = (key, objects) => {
+
+    for (const item of objects) {
+        del(key, item.id)
+    }
+
+    return true
+}
+
 const findById = async (key, id) => {
 
     const object = await axios.get(baseURL + `${key}/${id}.json`)
 
     return object
+}
+
+const findByParam = async (key, param, value) => {
+
+    const url = baseURL + `${key}.json?orderBy="${param}"&startAt="${value}"&endAt="${value}"`
+
+    const content = await axios.get(url)
+
+    let objetos = []
+
+    if (content.data) {
+        objetos = Object.keys(content.data)
+            .map((key) => {
+                return {
+                    id: key,
+                    ...content.data[key]
+                }
+            })
+    }
+
+    return objetos
 }
 
 const update = async (key, id, obj) => {
@@ -50,8 +80,11 @@ const update = async (key, id, obj) => {
 
 module.exports = {
     findAll,
+    findByParam,
     findById,
     create,
     del,
+    delCascade,
     update
+
 }

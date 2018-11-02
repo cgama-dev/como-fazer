@@ -1,17 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-        <h1>Criar Publicação</h1>
-        <form method="post" action="/publicacoes/create">
-            <input placeholder="Informe o título" type="text" name="titulo" /><br/><br/>
-            <textarea placeholder="Informe o conteúdo" name="conteudo"></textarea><br/>
-            <button type="submit">Salvar </button>
-        </form>
-</body>
-</html>
+<%- include('../layout/header')%>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="well well-sm">
+                    <legend class="text-center">Criar Publicação</legend>
+                    <hr>
+                    <form method="post" action="/publicacoes/create">
+                        <fieldset>
+                            <!-- Name input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="name">Selecione a categoria: </label>
+                                <div class="col-md-6">
+                                    <select name="idCategoria" class="form-control">
+                                        <option value=""> Selecione uma categoria</option>
+                                        <% categorias.forEach(value => { %>
+                                            <option value="<%= value.id %>">
+                                                <%= value.categoria%>
+                                            </option>
+                                            <%})%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="name">Título </label>
+                                <div class="col-md-6">
+                                    <input id="titulo" placeholder="Informe o título" type="text" name="titulo" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="name">Conteúdo: </label>
+                                <div class="col-md-6">
+                                    <textarea placeholder="Informe o conteúdo" name="conteudo" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 ">
+                                    <button type="submit" class="btn btn-primary ">Criar</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('../layout/footer')%>

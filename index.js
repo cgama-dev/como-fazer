@@ -10,6 +10,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 const port = process.env.PORT || 3030
 
+app.get('/', (req, res) => res.render('index'))
+
 app.use('/categorias', routerCategorias)
 
 app.use('/publicacoes', routerPublicacoes)

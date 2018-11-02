@@ -1,10 +1,12 @@
 const express = require('express')
 
-const { query, getById, pageSave, save, destroy, up } = require('../controllers/categoria.controller')()
+const { query, queryByParam, getById, pageSave, save, destroy, up } = require('../controllers/categoria.controller')()
 
 const router = express.Router()
 
 router.get('/', query)
+
+router.get('/:categoriaId/publicacoes', queryByParam)
 
 router.get('/nova', pageSave)
 

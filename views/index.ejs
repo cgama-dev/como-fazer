@@ -1,17 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('./layout/header')%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col=12 mt-3">
+                <div class="jumbotron ">
+                    <h1 class="display-4">Projeto Como Fazer</h1>
+                    <p class="lead"> Esse projeto foi realizado no evento FullStackLab.</p>
+                    
+                    <h5>Tecnologias Utilizadas:</h5>
+                    <ul>
+                        <li>NodeJS</li>
+                        <li>Express</li>
+                        <li>Firebase Rest API</li>
+                    </ul>
 
-<body>
-    <h1>Hello
-        <%= i %>
-    </h1>
-</body>
-
-</html>
+                    <hr class="my-4">
+                    <p> Para saber mais sobre o evento e cursos clique no botão <b>abaixo<b>.</p>
+                    <p class="lead">
+                        <a class="btn btn-primary btn-lg" target="_blank" href="http://devpleno.com/" role="button">Saiba mais</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('./layout/footer')%>

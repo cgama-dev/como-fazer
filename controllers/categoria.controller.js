@@ -10,6 +10,15 @@ module.exports = () => {
 
             res.render('categorias/index', { categorias: categorias })
         },
+
+        queryByParam: async (req, res) => {
+
+            const categoriaId = req.params.categoriaId;
+
+            const publicacoes = await api.findByParam('publicacoes', 'categoria_id', categoriaId)
+
+            res.render('publicacoes/index', { publicacoes: publicacoes })
+        },
         getById: async (req, res) => {
             const content = await api.findById('categorias', req.params.id)
 
@@ -17,7 +26,7 @@ module.exports = () => {
 
             res.render('categorias/editar', { id: req.params.id, categoria: categoria })
         },
-        pageSave:  (req, res) => {
+        pageSave: (req, res) => {
             res.render('categorias/create')
         },
         save: async (req, res) => {
@@ -30,6 +39,14 @@ module.exports = () => {
             res.redirect('/categorias')
         },
         destroy: async (req, res) => {
+
+            const publicacoes = await api.findByParam('publicacoes', 'categoria_id', req.params.id)
+
+            //Caso exista publicacoes delata todas as publicacoes da categoria a ser excluida
+            if (publicacoes.length) {
+                 api.delCascade('publicacoes', publicacoes)
+            }
+
             await api.del('categorias', req.params.id)
 
             res.redirect('/categorias')

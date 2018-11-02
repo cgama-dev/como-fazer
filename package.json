@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development node_modules/.bin/nodemon index",
+    "start": "NODE_ENV=development node_modules/.bin/nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
