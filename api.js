@@ -1,9 +1,11 @@
 const baseURL = 'https://como-fazer-2dc07.firebaseio.com/'
 
+const auth = 'Dp6BxpsSdxQg20OCB4NkCfsOVw8MqSuXlg8CY5r9'
+
 const axios = require('axios')
 
 const findAll = async (key) => {
-    const content = await axios.get(baseURL + `${key}.json`)
+    const content = await axios.get(baseURL + `${key}.json?auth=` + auth)
 
     let objetos = []
 
@@ -22,14 +24,14 @@ const findAll = async (key) => {
 
 const create = async (key, obj) => {
 
-    await axios.post(baseURL + `${key}.json`, obj)
+    await axios.post(baseURL + `${key}.json?auth=` + auth, obj)
 
     return true
 }
 
 const del = async (key, id) => {
 
-    await axios.delete(baseURL + `${key}/${id}.json`)
+    await axios.delete(baseURL + `${key}/${id}.json?auth=` + auth)
 
     return true
 }
@@ -45,14 +47,14 @@ const delCascade = (key, objects) => {
 
 const findById = async (key, id) => {
 
-    const object = await axios.get(baseURL + `${key}/${id}.json`)
+    const object = await axios.get(baseURL + `${key}/${id}.json?auth=` + auth)
 
     return object
 }
 
 const findByParam = async (key, param, value) => {
 
-    const url = baseURL + `${key}.json?orderBy="${param}"&startAt="${value}"&endAt="${value}"`
+    const url = baseURL + `${key}.json?auth=${auth}&orderBy="${param}"&startAt="${value}"&endAt="${value}"` 
 
     const content = await axios.get(url)
 
@@ -73,7 +75,7 @@ const findByParam = async (key, param, value) => {
 
 const update = async (key, id, obj) => {
 
-    await axios.put(baseURL + `${key}/${id}.json`, obj)
+    await axios.put(baseURL + `${key}/${id}.json?auth=` + auth, obj)
 
     return true
 }
