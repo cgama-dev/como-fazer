@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="/categorias/nova">Nova</a>
+    <br>
+    <% categorias.forEach(value => { %>
+        <%= value.categoria %>
+            <a href="/categorias/exluir/<%= value.id%>" </a>Exluir</a>
+            <a href="/categorias/editar/<%= value.id%>" </a>Editar</a>
+            <br>
+            <% }) %>
+</body>
+
+</html>
