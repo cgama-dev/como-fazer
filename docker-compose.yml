@@ -1,0 +1,13 @@
+version: '3'
+
+services: 
+  app:
+    image: app-como-fazer-image
+    container_name: app-como-fazer
+    build: .
+    volumes:
+      - .:/usr/src/
+    ports:
+      - "3030:3030" 
+    command: "yarn start"
+    
